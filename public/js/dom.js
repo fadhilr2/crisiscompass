@@ -31,7 +31,7 @@ geolocateControl: false
 map.on('load', function() {
   map.addSource('country', {
   'type': 'geojson',
-  'data':'http://localhost:3000/api/',
+  'data':'http://localhost:3000/api/geo',
   });
 
   map.addLayer(
