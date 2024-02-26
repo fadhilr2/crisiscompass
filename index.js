@@ -1,15 +1,17 @@
 import express from "express"
-import uniqid from 'uniqid'
-
+import "./server/loadEnvironment.js";
+import api from "./server/api/api.js"
 
 // EXPRESS SERVER CODE
 const app = express()
-const port = 3000
 
+app.set('views', './views');
+app.set('view engine', 'ejs');
 app.use(express.static("public"))
+app.use("/api", api)
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {   
   res.render("index.ejs")
 })
 
-app.listen(port, () => {})
+app.listen(process.env.PORT, () => {})

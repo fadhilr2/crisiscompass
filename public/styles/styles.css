@@ -9,9 +9,9 @@ body{
   overflow: hidden;
 }
 h1, h2,h3, p, ul{
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
   color: white;
+  font-family: "Istok Web", sans-serif;
+  font-style: normal;
 }
 h1{
   font-weight: 800;
@@ -87,6 +87,8 @@ img{
   transition: transform .5s;
   width: 200px;
   z-index: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .main{

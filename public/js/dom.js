@@ -1,4 +1,3 @@
-
 const sidebar = document.getElementById("sidebar")
 var sidebarState = false
 
@@ -9,87 +8,95 @@ window.mobileCheck = function() {
 };
 
 document.getElementById("nav").addEventListener("click", (evt) =>{
-  if(!sidebarState) {
-    sidebar.style.transform = (window.mobileCheck()) ? "translateX(0%)" : "translateX(-10%)"
-    sidebarState = true
-  } else {
-    sidebar.style.transform = "translateX(100%)"
-    sidebarState = false
-  }
+if(!sidebarState) {
+sidebar.style.transform = (window.mobileCheck()) ? "translateX(0%)" : "translateX(-10%)"
+sidebarState = true
+} else {
+sidebar.style.transform = "translateX(100%)"
+sidebarState = false
+}
 })
-
-
-
 maptilersdk.config.apiKey = 'bV5jY5PMe3WW4KwkaFlc';
 
 const map = new maptilersdk.Map({
-  container: 'map', // container's id or the HTML element in which the SDK will render the map
-  style: maptilersdk.MapStyle.DATAVIZ.DARK,
-  center: [16.62662018, 49.2125578], // starting position [lng, lat]
-  zoom: 2, // starting zoom
-  navigationControl:"bottom-left",
-  geolocateControl: false
-}); 
+container: 'map', // container's id or the HTML element in which the SDK will render the map
+style: maptilersdk.MapStyle.DATAVIZ.DARK,
+center: [16.62662018, 49.2125578], // starting position [lng, lat]
+zoom: 2, // starting zoom
+navigationControl:"bottom-left",
+geolocateControl: false
+});
+
 
 map.on('load', function() {
   map.addSource('country', {
-    'type': 'geojson',
-    'data': 'https://api.maptiler.com/data/63106526-e5ab-40ea-a662-f5dff929aec1/features.json?key=bV5jY5PMe3WW4KwkaFlc',
+  'type': 'geojson',
+  'data':'http://localhost:3000/api/',
   });
 
   map.addLayer(
-    {
-      'id': 'IDcountry',
-      'source': 'country',
-      'type': 'fill',
-      'paint': {
-          'fill-color': [
-            'interpolate',
-            ['linear'],
-            ['get', 'status'],
-            10,
-            '#FFEDA0',
-            100,
-            '#E31A1C',
-            500,
-            '#BD0026',
-            10000,
-            '#800026'
-          ],
-          'fill-opacity': 0.5,
-          'fill-outline-color': '#FFFFFF'
-      }
-    });
-});
+  {
+  'id': 'IDcountry',
+  'source': 'country',
+  'type': 'fill',
+  'paint': {
+  'fill-color': [
+  'interpolate',
+  ['linear'],
+  ['get', 'status'],
+  1,
+  '#FFEDA0',
+  100,
+  '#E31A1C',
+  1000,
+  '#BD0026',
+  10000,
+  '#800026'
+  ],
+  'fill-opacity': 0.5,
+  'fill-outline-color': '#FFFFFF'
+  }
+  });
 
-map.on('click', 'IDcountry', function (e) {
-  console.log(e.features[0].properties.status)
-  new maptilersdk.Popup()
-    .setLngLat(e.lngLat)
-    .setHTML(`<div class="popup">
-    <a href="www.google.com">
-      <div class="-img">
-        <img src="https://assets.editorial.aetnd.com/uploads/2018/09/syria-civil-war-getty-462518530.jpg" alt="">
-  
-        <div class="-img-gradient">
-        </div>
-        <h3>Syrian Civil war</h3>
+  map.on('click', 'IDcountry', function (e) {
+    let text
+    let color
+    switch(e.features[0].properties.state){
+      case 0:
+        text = "Improving"
+        break;
+      case 1:
+        text = "Stalling"
+        break;
+      case 2:
+        text = "Worsening"
+        break;
+    }
+    new maptilersdk.Popup().setLngLat(e.lngLat).setHTML(`<div class="popup">
+  <a href="www.google.com">
+    <div class="-img">
+      <img src="${e.features[0].properties.thumb}" alt="">
+
+      <div class="-img-gradient">
       </div>
-      <div class="-status">
-        <span>Conflict status: Worsening</span><hr>
-        <span>Deaths: 10.000</span>
-      </div>
-    </a>
-  </div>`)
-    .addTo(map);
+      <h3>${e.features[0].properties.title}</h3>
+    </div>
+    <div class="-status">
+      <span>Conflict status: ${text}</span>
+      <hr>
+      <span>Deaths: ${e.features[0].properties.deaths ? e.features[0].properties.deaths : "Not Estimated Yet"}</span>
+    </div>
+  </a>
+  </div>`).addTo(map);
+  });
 });
 
 // Change the cursor to a pointer when the mouse is over the layer.
 map.on('mouseenter', 'IDcountry', function () {
-  map.getCanvas().style.cursor = 'pointer';
+map.getCanvas().style.cursor = 'pointer';
 });
 
 // Change it back to a pointer when it leaves.
 map.on('mouseleave', 'IDcountry', function () {
-  map.getCanvas().style.cursor = '';
+map.getCanvas().style.cursor = '';
 });
