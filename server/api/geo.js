@@ -1,11 +1,11 @@
 import express from "express"
 import db from "../db/conn.js"
 import bodyParser from "body-parser"
+import jsonminify from "jsonminify"
 
 const router = express.Router()
-router.use(bodyParser.urlencoded({extended: true}))
+router.use(bodyParser.urlencoded({extended: true, limit: "10000000mb"}))
 router.use(bodyParser.json())
-
 router.get("/", async (req, res) => {
   let collection = db.collection("geoJSON")
   const findResult = collection.find({})
@@ -25,23 +25,35 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-  let collection = db.collection("geoJSON")
-  let newDocument = req.body
-
-  const JSON = {
+  let doc = req.body
+  const collection = db.collection("geoJSON")
+  const article = db.collection("articles")
+  const countryPolygon = JSON.parse(req.body.JSONInput)
+  doc = {
+    _id: "",
     type: "Feature",
     properties: {
-      ADMIN: "",
-      
+      title: req.body.title,
+      deaths: req.body.deaths,
+      status: Number(req.body.status),
+      state: Number(req.body.state),
+      thumb: req.body.thumb,
+      JSON: req.body.JSONInput
     },
-    geometry: {
-
-    }
+    geometry: countryPolygon 
   }
 
-  const result = await collection.insertOne(newDocument)
-  
-  res.send("OK").status(200)
+  const articleData = {
+    title: "Sudan Civil War",
+    author: "wada",
+    publishedDate: "2024",
+    content: [
+      
+    ]
+  }
+  const result = await collection.insertOne(doc)
+  const articleResult = await article.insertOne(articleData)
+  res.send(doc).status(200)
 })
 
 export default router

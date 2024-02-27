@@ -102,15 +102,14 @@ img{
   width: 100%;
   z-index: 0;
 }
+
 .maplibregl-popup-content{
   background-color: #292929;
   padding: 16px 24px;
 }
-
 .maplibregl-popup:hover .maplibregl-popup-content{
   transform: scale(1.05);
 }
-
 .maplibregl-popup-content{
   transition: transform .2s;
 }
@@ -151,6 +150,12 @@ img{
 }
 .-status hr{
   margin: 0;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
 }
 
 @media (max-width: 480px) {

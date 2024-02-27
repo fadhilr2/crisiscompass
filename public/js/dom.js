@@ -72,22 +72,23 @@ map.on('load', function() {
         text = "Worsening"
         break;
     }
-    new maptilersdk.Popup().setLngLat(e.lngLat).setHTML(`<div class="popup">
-  <a href="www.google.com">
-    <div class="-img">
-      <img src="${e.features[0].properties.thumb}" alt="">
+    new maptilersdk.Popup().setLngLat(e.lngLat).setHTML(`
+    <div class="popup">
+      <a href="www.google.com">
+        <div class="-img">
+          <img src="${e.features[0].properties.thumb}" alt="">
 
-      <div class="-img-gradient">
-      </div>
-      <h3>${e.features[0].properties.title}</h3>
-    </div>
-    <div class="-status">
-      <span>Conflict status: ${text}</span>
-      <hr>
-      <span>Deaths: ${e.features[0].properties.deaths ? e.features[0].properties.deaths : "Not Estimated Yet"}</span>
-    </div>
-  </a>
-  </div>`).addTo(map);
+          <div class="-img-gradient">
+          </div>
+          <h3>${e.features[0].properties.title}</h3>
+        </div>
+        <div class="-status">
+          <span>Conflict status: ${text}</span>
+          <hr>
+          <span>Deaths: ${e.features[0].properties.deaths ? e.features[0].properties.deaths : "Not Estimated Yet"}</span>
+        </div>
+      </a>
+    </div>`).addTo(map);
   });
 });
 
