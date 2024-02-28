@@ -1,56 +1,13 @@
-body{
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100dvh;
-  position: relative;
-  z-index: -1;
-}
-h1, h2,h3, p, ul{
-  font-family: "Istok Web", sans-serif;
-  font-style: normal;
-}
+
 p{
-  color: rgb(98, 98, 98);
+  color: #555555 !important;
+
 }
-h1{
-  font-weight: 800;
-  font-size: 2rem;
+h2{
+  color: black;
 }
 
-.title{
-  font-size: 2rem;
-  font-weight: 800;
-  color: white;
-}
-a{
-  text-decoration: none;
-}
-a:visited { text-decoration: none; color:white; }
-a:focus { text-decoration: none; color:yellow; }
-button{
-  background-color: transparent;
-  border-radius: 2px;
-  border: 0;
-  cursor: pointer;
-  color: white;
-  font-size: 24px;
-}
-ul{
-  list-style: none;
-  padding: 0;
-}
-li{
-  cursor: default;
-  font-size: 1rem;
-}
-li:hover > a{
-  color: #FF8100;
-}
 img{
-  height: 100%;
-  width: 100%;
   object-fit: cover;
 }
 
@@ -69,12 +26,9 @@ img{
   flex-direction: column;
 }
 .-img{
-  height: 50%;
+  height: 25%;
   position: relative;
   width: 100%;
-}
-.-img img{
-  object-fit: cover;
 }
 .-gradient{
   align-items: center;
@@ -95,6 +49,15 @@ img{
   text-align: start;
   flex: 4;
 }
+.-text p{
+  color: #c3c3c3 !important;
+}
+.article h1{
+  color: black !important;
+}
+.article p{
+  font-size: 1.5rem;
+}
 .-gap{
   flex: 4;
 }
@@ -104,6 +67,10 @@ img{
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: auto;
   padding: 32px;
+}
+
+.article img{
+  height: 200px;
 }
 
 @media (max-width: 480px) {
@@ -122,5 +89,17 @@ img{
   }
   .main{
     margin-top: 90px;
+  }
+} 
+@media (min-width: 481px) and (max-width: 1200px) {
+  .article{
+    padding: 0px;
+    grid-template-columns: 1fr 10fr 1fr;
+  }
+  .main{
+    margin-top: 90px;
+  }
+  .-gap{
+    flex: 0;
   }
 }

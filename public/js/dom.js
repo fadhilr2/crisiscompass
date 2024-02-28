@@ -8,6 +8,8 @@ window.mobileCheck = function() {
   return check;
 };
 
+console.log()
+
 //* sidebar onclick handler
 document.getElementById("nav").addEventListener("click", (evt) =>{
 if(!sidebarState) {
@@ -18,7 +20,6 @@ sidebar.style.transform = "translateX(100%)"
 sidebarState = false
 }
 })
-
 
 //*Initialize map
 maptilersdk.config.apiKey = 'bV5jY5PMe3WW4KwkaFlc';
@@ -38,8 +39,7 @@ const northAmerica = document.getElementById("NorthAmerica")
 const southAmerica = document.getElementById("SouthAmerica")
 
 map.on('load', async function() {
-  const data = await (await fetch(`http://localhost:3000/api/geo`)).json()
-
+  const data = await (await fetch(`https://${window.location.hostname}/api/geo`)).json()
 
   data.features.forEach((e) => {
     const p = document.createElement("p")
@@ -99,7 +99,7 @@ map.on('click', 'IDcountry', function (e) {
   //*on country polygon click show popup
 new maptilersdk.Popup().setLngLat(e.lngLat).setHTML(`
   <div class="popup">
-    <a href="http://localhost:3000/article/${e.features[0].properties.articleId}">
+    <a href="https://${window.location.hostname}/article/${e.features[0].properties.articleId}">
       <div class="-img">
         <img src="${e.features[0].properties.thumb}" alt="">
 

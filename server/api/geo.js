@@ -104,7 +104,9 @@ router.post("/", async (req, res) => {
   const articleData = {
     _id: id,
     title: req.body.articleTitle,
+    description: req.body.articleDescription,
     author: req.body.articleAuthor,
+    thumb: req.body.articleThumb,
     content: []
   }
 
@@ -130,6 +132,10 @@ router.post("/", async (req, res) => {
           text: value
         })
       }
+    } else if(key.includes("image")){
+      articleData.content.push({
+        src: value
+      })
     }
   }
 
