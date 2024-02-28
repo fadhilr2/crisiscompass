@@ -29,11 +29,11 @@ a{
 a:visited { text-decoration: none; color:white; }
 a:focus { text-decoration: none; color:yellow; }
 button{
-  background-color: transparent;
+  /* background-color: transparent; */
   border-radius: 2px;
   border: 0;
   cursor: pointer;
-  color: white;
+  /* color: white; */
   font-size: 24px;
 }
 ul{
@@ -85,10 +85,16 @@ img{
   top: 123px;
   transform: translateX(100%);
   transition: transform .5s;
-  width: 200px;
+  width: 300px;
   z-index: 1;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+.--sidebar p{
+  margin: 0;
+  font-size: 1.5rem;
+  color: #aaaaaa;
+  font-weight: 400;
 }
 
 .main{
@@ -157,6 +163,21 @@ img{
   flex-direction: column;
   padding: 32px;
 }
+
+#geo{
+  padding: 2px !important;
+}
+
+#article{
+  display: none;
+}
+
+.sectionList{
+  display: flex;
+  flex-direction: column;
+}
+
+
 
 @media (max-width: 480px) {
   .head{

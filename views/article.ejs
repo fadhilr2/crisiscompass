@@ -16,17 +16,18 @@
   <body>
     <header class="head">
       <div class="-logo">
-        <a href=""><h1> Crisis Compass</h1></a>
+        <a href="http://localhost:3000/"><h1> Crisis Compass</h1></a>
       </div>
     </header>
     <main class="main">
       <div class="-img">
-        <img src="GettyImages-97662009-e1639583222583.jpg" alt="">
+        <img src="<%= thumb %>" alt="">
         <div class="-gradient">
           <div class="-text">
-            <h1>Echoes of Conflict: Unraveling the Iraq-Iran War
+            <h1>
+              <%= title %>
             </h1>
-            <p>The Iraq-Iran War, spanning from 1980 to 1988, stands as a pivotal and harrowing chapter in the history of the Middle East. This brutal conflict unfolded against a backdrop of longstanding regional tensions</p>
+            <p><%= description %></p>
           </div>
           <div class="-gap">
             
@@ -37,19 +38,12 @@
         <div>
         </div>
         <div>
-          <section>
-            <h2>Introduction</h2>
-            <p>Duis qui proident eiusmod proident cupidatat duis nisi. Incididunt qui sunt cupidatat enim voluptate qui. Sunt minim non proident aliquip adipisicing anim dolore sit ipsum occaecat nisi. Id occaecat sit est proident commodo velit deserunt. Ut et pariatur id qui eu esse et veniam. Consequat ea veniam ex minim non. Consequat cupidatat eu anim cupidatat et eu aliquip minim.</p>
-          </section>
-          <section>
-            <h2>Lorem</h2>
-            <p>Duis qui proident eiusmod proident cupidatat duis nisi. Incididunt qui sunt cupidatat enim voluptate qui. Sunt minim non proident aliquip adipisicing anim dolore sit ipsum occaecat nisi. Id occaecat sit est proident commodo velit deserunt. Ut et pariatur id qui eu esse et veniam. Consequat ea veniam ex minim non. Consequat cupidatat eu anim cupidatat et eu aliquip minim.</p>
-          </section>
-          <section>
-            <img src="https://qph.cf2.quoracdn.net/main-qimg-1942810b897b9023cf4541e695d66324-lq" alt="">
-            <p>Duis qui proident eiusmod proident cupidatat duis nisi. Incididunt qui sunt cupidatat enim voluptate qui. Sunt minim non proident aliquip adipisicing anim dolore sit ipsum occaecat nisi. Id occaecat sit est proident commodo velit deserunt. Ut et pariatur id qui eu esse et veniam. Consequat ea veniam ex minim non. Consequat cupidatat eu anim cupidatat et eu aliquip minim.</p>
-
-          </section>
+          <% content.forEach((data) => { %>
+            <section>
+              <h2><%= data.title %></h2>
+              <p><%= data.text %></p>
+            </section>
+          <% }) %>
         </div>        
         <div></div>
       </article>
